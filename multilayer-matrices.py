@@ -80,4 +80,5 @@ for i in range(n_weights):
 synapses.append(2 * np.random.random((input_size, 1)) - 1)
 
 
-train(x, y, synapses)
+# train(x, y, synapses)
+print "hello"
