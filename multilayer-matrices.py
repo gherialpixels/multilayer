@@ -28,8 +28,9 @@ def train(inputs, output, weights, lr=0.03):
     for b in xrange(600):
         for i in range(weight_length):
             if not len(layers) > weight_length:
-
-            layers.append(predict(layers[-1], syn))
+                pass
+            else:
+                layers.append(predict(layers[-1], syn))
 
         error = loss(layers[-1], output)
 
