@@ -90,7 +90,8 @@ def train(nodes, point, errors):
 
 def display_training(nodes):
     # points on a 2D grid
-    points = [return_point(random.randint(-200, 200), random.randint(-200, 200)) for i in xrange(100)]
+    points = [return_point(random.randint(-200, 200), \
+              random.randint(-200, 200)) for i in xrange(100)]
 
     error_list = []
 
@@ -109,7 +110,8 @@ def display_training(nodes):
 def test(nodes):
     accuracy = []
 
-    testing_points = [return_point(random.randint(-200, 200), random.randint(-200, 200), 0.5, 50) for i in xrange(50)]
+    testing_points = [return_point(random.randint(-200, 200), \
+                     random.randint(-200, 200), 0.5, 50) for i in xrange(50)]
 
     nodes_ordered = order_nodes(nodes, 1, [])
 

@@ -67,7 +67,8 @@ input_size = 100
 n_weights = 1
 
 # input
-x = np.array([[random.randint(-200, 200), random.randint(-200, 200)] for a in xrange(input_size)])
+x = np.array([[random.randint(-200, 200), random.randint(-200, 200)] \
+            for a in xrange(input_size)])
 
 # output
 y = np.array([[1 if x[i][0] ** 3 > x[i][1] else 0] for i in xrange(input_size)])
@@ -80,5 +81,4 @@ for i in range(n_weights):
 synapses.append(2 * np.random.random((input_size, 1)) - 1)
 
 
-# train(x, y, synapses)
-
+train(x, y, synapses)
