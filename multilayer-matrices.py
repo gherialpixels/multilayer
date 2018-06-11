@@ -10,9 +10,9 @@ def sigmoid(num, deriv=False):
 
 def threshold(num):
     if num >= 0.5:
-        return 1
+        return 1.0
     else:
-        return 0
+        return 0.0
 
 
 def loss(output, prediction):
@@ -25,7 +25,7 @@ def cost(errs):
 
 def train(inputs, output, weights, lr=0.03):
     layer0 = inputs
-    for b in xrange(50):
+    for b in xrange(100):
         layer1 = predict(layer0, weights[0])
         layer2 = predict(layer1, weights[1])
 
@@ -41,7 +41,7 @@ def train(inputs, output, weights, lr=0.03):
 
         if b % 5 == 0:
             error = l2_error
-            print "average error: ", cost(error)
+            print "average error: ", np.mean(np.abs(error))
 
 
 def predict(inputs, weights, testing=False):
@@ -56,13 +56,12 @@ def test(inputs, output, weights):
     accuracy = []
 
     layer0 = inputs
-    for b in xrange(10):
-        layer1 = predict(layer0, weights[0])
-        layer2 = predict(layer1, weights[1])
+    layer1 = predict(layer0, weights[0])
+    layer2 = predict(layer1, weights[1])
 
-        accuracy.append(cost(loss(output, threshold(layer2))))
+    guess = threshold(layer2.all())
+    print guess, "\n", layer2
 
-    print "accuracy: ", sum(accuracy) / len(accuracy)
 
 np.random.seed(120)
 
@@ -74,7 +73,7 @@ x = np.array([[np.random.randint(-200, 200), np.random.randint(-200, 200)] \
             for a in xrange(input_size)])
 
 # output
-y = np.array([[1 if x[i][0] ** 5 > x[i][1] else 0] for i in xrange(input_size)])
+y = np.array([[1 if x[i][0] ** 2 + x[i][1] ** 2 > 16 else 0] for i in xrange(input_size)])
 
 # weights / synapses
 syn0 = 2 * np.random.random((2, input_size)) - 1
@@ -82,3 +81,12 @@ syn1 = 2 * np.random.random((input_size, 1)) - 1
 
 
 train(x, y, [syn0, syn1])
+
+"""
+xtest = np.array([[np.random.randint(-200, 200), np.random.randint(-200, 200)] \
+                for a in range(50)])
+ytest = np.array([[1 if (x[i][0] ** 2)* 3 + 20 > x[i][1] else 0] \
+                for i in range(50)])
+
+test(xtest, ytest, [syn0, syn1])
+"""
