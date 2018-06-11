@@ -73,7 +73,7 @@ x = np.array([[np.random.randint(-200, 200), np.random.randint(-200, 200)] \
             for a in xrange(input_size)])
 
 # output
-y = np.array([[1 if x[i][0] ** 3 > x[i][1] else 0] for i in xrange(input_size)])
+y = np.array([[1 if x[i][0] ** 2 + x[i][1] ** 2 > 16 else 0] for i in xrange(input_size)])
 
 # weights / synapses
 syn0 = 2 * np.random.random((2, input_size)) - 1
